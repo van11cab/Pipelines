@@ -8,12 +8,16 @@ pipeline{
     stages{
         stage('Terraform init') {
             steps {
-                sh 'terraform init'
+                dir('/var/lib/jenkins/workspace/Terraform/Terraform - Pipeline'){
+                    sh 'terraform init'
+                }
             }
         }
         stage('Terraform apply'){
             steps{
-                sh 'terraform apply'
+                dir('/var/lib/jenkins/workspace/Terraform/Terraform - Pipeline'){
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
