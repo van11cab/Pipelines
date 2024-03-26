@@ -1,0 +1,10 @@
+---
+# tasks file for Logstash
+
+ - name: Logstash Installation
+   tags: install
+   import_tasks: install.yml
+
+ - name: Logstash Run
+   tags: run
+   import_tasks: run.yml
