@@ -7,7 +7,7 @@ resource "aws_instance" "pipeline_ouput" {
   }
 }
 
-resource "aws_instance" "pipeline_ouput" {
+resource "aws_instance" "pipeline_ouput2" {
   ami           = "ami-08f7912c15ca96832"
   instance_type = "t2.micro"
 
