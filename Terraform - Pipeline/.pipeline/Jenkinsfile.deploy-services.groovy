@@ -10,31 +10,33 @@ pipeline{
     stages{
         stage('Vault Access'){
             steps{
-                script{
-                    def vaultResponse
-                    withVault([configuration: configuration, vaultSecrets: secrets]){
-                        vaultResponse = [
-                            access_pass: env.ACCESS,
-                            secret_pass: env.SECRET,
-                            region: env.REGION
-                        ]
+               dir('/var/lib/jenkins/workspace/terraform pipeline/Terraform - Pipeline/deployment'){
+                    script{
+                        def vaultResponse
+                        withVault([configuration: configuration, vaultSecrets: secrets]){
+                            vaultResponse = [
+                                access_pass: env.ACCESS,
+                                secret_pass: env.SECRET,
+                                region: env.REGION
+                            ]
+                        }
+                        
+                        env.AWS_ACCESS_KEY = vaultResponse['access_pass']
+                        env.AWS_SECRET_ACCESS_KEY = vaultResponse['secret_pass']
                     }
-                    
-                    env.AWS_ACCESS_KEY = vaultResponse['access_pass']
-                    env.AWS_SECRET_ACCESS_KEY = vaultResponse['secret_pass']
-                }
+               }
             }
         }
         stage('Terraform init') {
             steps {
-                dir('/var/lib/jenkins/workspace/terraform pipeline/Terraform - Pipeline'){
+                dir('/var/lib/jenkins/workspace/terraform pipeline/Terraform - Pipeline/deployment'){
                     sh 'terraform init'
                 }
             }
         }
         stage('Terraform apply'){
             steps{
-                dir('/var/lib/jenkins/workspace/terraform pipeline/Terraform - Pipeline'){
+                dir('/var/lib/jenkins/workspace/terraform pipeline/Terraform - Pipeline/deployment'){
                     sh 'terraform apply -auto-approve'
                 }
             }
