@@ -17,11 +17,11 @@ resource "aws_instance" "pipeline_ouput2" {
 }
 
 resource "aws_ec2_instance_state" "for_output" {
-  instance_id = aws_instance.pipeline_ouput.instance_id
+  instance_id = resource.aws_instance.pipeline_ouput.id
   state = "running"
 }
 
 resource "aws_ec2_instance_state" "for_output2" {
-  instance_id = aws_instance.pipeline_ouput2.instance_id
+  instance_id = resource.aws_instance.pipeline_ouput2.id
   state = "running"
 }
