@@ -4,7 +4,7 @@ def secrets = [
     [envVar: 'SECRET', vaultKey: 'AWS_SECRET_KEY'],
     [envVar: 'REGION', vaultKey: 'region']]],
 ]
-def configuration = [vaultUrl: 'http://35.86.125.58:8200',  vaultCredentialId: 'Vault-JenkinsApprole', engineVersion: 2]
+def configuration = [vaultUrl: 'http://35.90.244.143:8200',  vaultCredentialId: 'Vault-JenkinsApprole', engineVersion: 2]
 pipeline{
     agent any
     stages{
