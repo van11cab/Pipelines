@@ -1,6 +1,7 @@
 resource "aws_instance" "pipeline_ouput" {
   ami           = "ami-08f7912c15ca96832"
   instance_type = "t2.micro"
+  vpc_security_group_ids = "sg-03cfac34d03e9d681"
 
   tags = {
     Name = "Output"
@@ -10,7 +11,7 @@ resource "aws_instance" "pipeline_ouput" {
 resource "aws_instance" "pipeline_ouput2" {
   ami           = "ami-08f7912c15ca96832"
   instance_type = "t2.micro"
-
+  vpc_security_group_ids = "sg-03cfac34d03e9d681"
   tags = {
     Name = "Output_2"
   }
