@@ -1,0 +1,19 @@
+ - name: Update
+   ansible.builtin.apt:
+    update-cache: yes
+ - name: Elasticsearch Key
+   ansible.builtin.apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+ - name: Install Apt Transport
+   ansible.builtin.apt:
+    name: apt-transport-https
+    state: present
+ - name: Connecting to Repository
+   ansible.builtin.apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/7.x/apt stable main"
+    state: present
+
+
+
+    

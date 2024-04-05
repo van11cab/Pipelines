@@ -1,0 +1,22 @@
+  - name: Get public ip address
+    community.general.ipify_facts:
+  - name: Configuring Server
+    template:
+      src: templates/config.hcl.j2
+      dest: /etc/vault.d/vault.hcl
+  - name: Environment variable
+    ansible.builtin.debug:
+      msg: "{{lookup('ansible.builtin.env', 'VAULT_ADDR', default= 'http://127.0.0.1:8200')}}"
+  - name: Creating Raft Storage Directory
+    ansible.builtin.file:
+      path: /var/lib/vault/data
+      state: directory
+      owner: "vault"
+      group: "vault"
+  - name: Run server with config flag on port 9200
+    service:
+      name: vault
+      state: restarted
+      enabled: yes
+    
+  

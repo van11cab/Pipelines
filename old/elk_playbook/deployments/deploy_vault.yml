@@ -1,0 +1,11 @@
+- hosts: vault
+  become: true
+  vars:
+   ansible_user: ubuntu
+   logstash_target_host: "{{ groups['elastic'][0] }}"
+  roles:
+#   - role: ../roles/Logstash
+   - role: ../roles/Vault
+
+   
+   

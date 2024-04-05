@@ -1,0 +1,25 @@
+  - name: Update
+    ansible.builtin.apt: 
+      update_cache: yes
+  - name: Install GPG
+    ansible.builtin.apt:
+      name: gpg
+      state: present
+  - name: Install Wget
+    ansible.builtin.apt:
+      name: wget
+      state: present
+  - name: Download Keyring
+    ansible.builtin.apt_key:
+      url: https://apt.releases.hashicorp.com/gpg
+      state: present
+  - name: Adding Hashicorp Repository
+    ansible.builtin.apt_repository:
+      repo: " deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+  - name: Vault - Update
+    ansible.builtin.apt: 
+      update_cache: yes
+  - name: Vault - Install
+    ansible.builtin.apt: 
+      name: vault
+      state: present
