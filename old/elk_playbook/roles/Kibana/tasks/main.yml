@@ -1,5 +1,0 @@
----
-# tasks file for Kibana
-  - name: Kibana Run
-    tags: run
-    import_tasks: kibana_run.yml

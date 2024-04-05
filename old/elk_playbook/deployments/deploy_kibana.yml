@@ -1,9 +1,0 @@
-- hosts: kibana
-  become: true
-  vars:
-   ansible_user: ubuntu
-   elastic_host: "{{ groups['elastic'][0] }}"
-  roles:
-#    - role: ../roles/Logstash
-    - role: ../roles/Kibana
-    
