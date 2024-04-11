@@ -1,0 +1,41 @@
+- name: Update
+  ansible.builtin.apt:
+    update-cache: yes
+- name: Docker ca-certificates
+  ansible.builtin.apt: 
+    name: ca-certificates
+    state: present
+- name: Get Keyring
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name: Add Repository
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable 
+- name: Update with Docker
+  ansible.builtin.apt:
+    update-cache: yes
+- name: Install Docker (docker-ce)  
+  ansible.builtin.apt:
+    name: docker-ce
+    state: present
+- name: Install Docker (docker-ce-cli)
+  ansible.builtin.apt:
+    name: docker-ce-cli
+    state: present
+- name: Install Docker (containerd.io)
+  ansible.builtin.apt:
+    name: containerd.io
+    state: present
+- name: Install Docker (docker-buildx-plugin)
+  ansible.builtin.apt:
+    name: docker-buildx-plugin
+    state: present
+- name: Install Docker (docker-compose-plugin)
+  ansible.builtin.apt:
+    name: docker-compose-plugin
+    state: present
+- name: Start Docker
+  ansible.builtin.systemd:
+   name: docker
+   state: started
